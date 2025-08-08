@@ -14,8 +14,7 @@ class TaskDto
                                 public string     $user_id,
                                 public ?\DateTime $due_date,
                                 public ?bool      $completed,
-                                public ?string    $category_id,
-                                public ?string    $new_category_name)
+                                public ?string    $category_name)
     {
         //
     }
@@ -29,8 +28,7 @@ class TaskDto
             user_id: $request->user()->id,
             due_date: !empty($request->due_date) ? new \DateTime($request->due_date) : null,
             completed: $request->completed,
-            category_id: $request->category_id,
-            new_category_name: $request->new_category_name,
+            category_name: $request->category_name,
         );
     }
 }

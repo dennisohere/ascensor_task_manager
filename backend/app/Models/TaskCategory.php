@@ -15,6 +15,8 @@ class TaskCategory extends Model
 {
     use HasUuids;
 
+    protected $table = 'task_categories';
+
     protected $fillable = [
         'name'
     ];

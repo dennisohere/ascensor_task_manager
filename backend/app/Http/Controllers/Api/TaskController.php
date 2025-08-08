@@ -33,8 +33,7 @@ class TaskController extends Controller
             'description' => 'required',
             'due_date' => 'nullable|date',
             'completed' => 'nullable|boolean',
-            'category_id' => 'nullable|exists:categories,id',
-            'new_category_name' => 'required_without:category_id',
+            'category_name' => 'required',
         ]);
 
         $payload = TaskDto::fromRequest($request);
@@ -57,8 +56,7 @@ class TaskController extends Controller
             'description' => 'required',
             'due_date' => 'nullable|date',
             'completed' => 'nullable|boolean',
-            'category_id' => 'sometimes|exists:categories,id',
-            'new_category_name' => 'required_without:category_id',
+            'category_name' => 'required',
         ]);
 
         $payload = TaskDto::fromRequest($request);

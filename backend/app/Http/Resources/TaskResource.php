@@ -21,9 +21,12 @@ class TaskResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'completed' => $this->completed,
-            'due_date' => $this->due_date,
+            'due_date' => \DateTime::createFromFormat('Y-m-d H:i:s', $this->due_date)->format('Y-m-d'),
             'user' => new UserResource($this->user),
-            'category' => $this->category,
+            'category' => [
+                'id' => $this->category->id,
+                'name' => $this->category->name,
+            ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

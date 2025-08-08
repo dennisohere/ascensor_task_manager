@@ -45,12 +45,8 @@ class TaskService
         $task->completed = $payload->completed;
         $task->due_date = $payload->due_date;
 
-        if(!!$payload->category_id){
-            $task->category_id = $payload->category_id;
-        } else {
-            $new_category = $this->initTaskCategoryByName($payload->new_category_name);
-            $task->category_id = $new_category->id;
-        }
+        $category = $this->initTaskCategoryByName($payload->category_name);
+        $task->category_id = $category->id;
 
         $task->user_id = $payload->user_id;
 
@@ -64,7 +60,7 @@ class TaskService
     }
 
 
-    public function initTaskCategoryByName(string $category_name): TaskCategory
+    protected function initTaskCategoryByName(string $category_name): TaskCategory
     {
         return TaskCategory::query()->firstOrCreate(['name' => $category_name]);
     }
